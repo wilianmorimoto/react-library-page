@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@font-face {
+	font-family: "Armin Black";
+	src: url(assets/font/Fontspring-DEMO-armingrotesk-black.otf);
+}
+
+@font-face {
+	font-family: "Armin Semi-bold";
+	src: url(assets/font/Fontspring-DEMO-armingrotesk-semibold.otf);
+}
+
+@font-face {
+	font-family: "Armin Regular";
+	src: url(assets/font/Fontspring-DEMO-armingrotesk-regular.otf);
+}
+
+:root {
+	--text-color: #11284b;
+	--blue: #381fd1;
+	--header-color: #f6f6eb;
+	--copy-color: #fedb63;
+	--filters-color: #4b4b4e;
+  --bg-light-color: #f3f2fc;
+	--font-regular: "Armin Regular";
+	--font-semibold: "Armin Semi-bold";
+	--font-black: "Armin Black";
+	--border-light-color: rgba(0, 0, 0, 0.15);
+  --bg-purple-color: #f8ecfc;
+}
+
+* {
+	font-family: var(--font-regular);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 24px;
+}
+
+p,
+a {
+	font-size: 16px;
+}
+
+main {
+  color: var(--text-color);
+}
+
+#header-nav {
+	display: none;
+}
+
+.sign a {
+	font-family: var(--font-semibold);
+	letter-spacing: 1.1px;
+}
+
+.sign a:first-child {
+	display: none;
+}
+
+#navbar a {
+	color: var(--blue);
+	font-weight: 600;
+}
+
+#navbar > a {
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--border-light-color);
+	font-family: var(--font-semibold);
+	letter-spacing: 1.1px;
+	font-size: 14px;
+}
+
+#navbar p {
+	font-family: var(--font-semibold);
+	letter-spacing: 1.1px;
+	font-size: 14px;
+}
+
+#navbar .nav-submenu a {
+	padding: 6px 0;
+}
+
+.search p {
+	display: none;
+}
+
+.filters > a {
+  cursor: pointer;
+  padding: 6px;
+  font-family: var(--font-semibold);
+
+  transition: color .25s;
+}
+
+.filters > a:hover {
+  color: var(--blue);
+}
+
+.contribute {
+  display: none;
+}
+
+.featured-cards .card:first-child {
+  background: url('https://res.cloudinary.com/stark-lab/image/upload/v1653845742/library_collection_Collection_Boundless_Disability_Employment_c297d236d9.png') center / cover;
+}
+
+.featured-cards .card:nth-child(2) {
+  background: var(--bg-light-color) url('https://res.cloudinary.com/stark-lab/image/upload/v1653845743/library_collection_making_accessible_color_combos_42c8d90a99.png') no-repeat bottom / contain;
+}
+
+.featured-cards .card:last-child {
+  background: var(--header-color) url('https://res.cloudinary.com/stark-lab/image/upload/v1653845743/library_collection_Inclusive_Social_Media_b9669e6d39.png') no-repeat bottom / contain;
+}
+
+.featured-cards .card {
+  width: 47%;
+}
+
+footer .links {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+}
+
+footer .links h3 {
+  font-size: 14px;
+  font-family: var(--font-black);
+  letter-spacing: 1.1px;
+  margin-bottom: .5rem;
+}
+
+footer .links a {
+  font-size: 16px;
+  font-family: var(--font-semibold);
+  padding: 4px 0;
+  width: fit-content;
+
+  position: relative;
+}
+
+footer .links a::after {
+  content: '';
+  width: 0%;
+  height: 1px;
+  border-bottom: 1px solid white;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  transition: width .4s;
+}
+
+footer .links a:hover::after {
+  width: 100%;
+}
+
+footer .social-media a {
+  clip-path: circle();
+}
+
+footer .social-media a img{
+  width: 36px;
+  height: 36px;
+
+  transition: scale .3s;
+}
+
+footer .social-media a img:hover{
+  scale: 1.1;
+}
+
+@media (min-width: 850px) {
+	#header-nav {
+		display: block;
+	}
+
+	#header-nav ul li a,
+	.sign a {
+		font-family: var(--font-black);
+		letter-spacing: 1.1px;
+		padding: 6px;
+
+		position: relative;
+	}
+
+	#header-nav ul li a::after {
+		content: "";
+		height: 1px;
+		width: 0%;
+		border-bottom: 3px solid var(--blue);
+		border-radius: 50px;
+
+		position: absolute;
+		bottom: -19px;
+		left: 50%;
+		transform: translateX(-50%);
+
+		transition: 0.4s;
+	}
+
+	#header-nav ul li a:hover::after {
+		width: 90%;
+	}
+
+  #header-nav li h3 {
+    font-family: var(--font-semibold);
+  }
+
+  #header-nav li p {
+    color: var(--filters-color);
+    font-size: 13px;
+  }
+
+  #usecases-menu {
+    width: 85vw;
+  }
+
+  #usecases-menu li:not(:last-child) {
+    height: 80px;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    transition: .3s;
+  }
+
+  #usecases-menu li:not(:last-child):hover {
+    background: var(--bg-light-color);
+  }
+
+  #usecases-menu li:last-child {
+    height: 176px;
+    cursor: pointer;
+
+    transition: .3s;
+  }
+
+  #usecases-menu li:last-child:hover {
+    background: var(--bg-light-color);
+  }
+
+  #header-nav .read-white-paper h3{
+    color: var(--filters-color);
+  }
+
+	.sign a:first-child {
+		display: block;
+	}
+
+	#menu-icon {
+		display: none;
+	}
+
+	#navbar {
+		display: none;
+	}
+
+  .container-menu {
+    width: 85vw;
+  }
+
+  #main-content {
+    width: 75%;
+  }
+
+	.search p {
+		display: block;
+    padding-top: 1rem;
+	}
+
+  #filters {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    width: 25%;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters a {
+    padding: 1.25rem 0;
+  }
+
+  #main {
+    padding-top: 120px;
+
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  .contribute {
+    display: block;
+  }
+
+  .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 47%;
+  }
+
+  footer .container-links {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1260px) {
+  .card, .featured-cards .card {
+    width: 30%;
+  }
+}
