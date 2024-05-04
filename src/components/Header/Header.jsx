@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { TiArrowSortedDown } from "react-icons/ti";
 
-const Header = ({ openNav, setOpenNav }) => {
+const Header = ({ openNav, setOpenNav, closeSubmenus }) => {
+	const [casesMenu, setCasesMenu] = useState(false);
+	const [resourcesMenu, setResourcesMenu] = useState(false);
+	const [containerMenus, setContainerMenus] = useState("");
+
+	useEffect(() => {
+		if (casesMenu) {
+			setContainerMenus("cases");
+		} else if (resourcesMenu) {
+			setContainerMenus("resources");
+		} else {
+			setContainerMenus("");
+		}
+	}, [casesMenu, resourcesMenu]);
+
 	return (
 		<div className="container-header bg-[var(--header-color)] fixed top-0 left-0 w-full z-20 shadow-md">
 			<header className="p-4 flex justify-between items-center max-w-7xl mx-auto">
@@ -30,16 +44,33 @@ const Header = ({ openNav, setOpenNav }) => {
 					</div>
 					<nav id="header-nav" className="text-[var(--blue)]">
 						<ul className="flex gap-8 relative">
-
-							<div className="container-menu h-48 absolute top-10 bg-white z-20 rounded-lg shadow-xl"></div>
+							<div
+								className={`${containerMenus === "" ? "h-0" : ""} ${containerMenus === "cases" ? "h-48" : ""} ${
+									containerMenus === "resources" ? "h-80" : ""
+								} container-menu duration-500 absolute top-10 bg-white z-20 rounded-lg shadow-xl`}
+							></div>
 
 							<li className="flex items-center">
-								<a href="#" className="text-sm flex items-center gap-1">
+								<a
+									onClick={() => {
+										setCasesMenu(!casesMenu);
+										setResourcesMenu(false);
+									}}
+									id="use-cases"
+									className="cursor-pointer text-sm flex items-center gap-1"
+								>
 									USE CASES
 									<TiArrowSortedDown />
 								</a>
 							</li>
-							<ul id="usecases-menu" className="absolute z-30 top-10 max-h-48 grid grid-cols-3 p-2 gap-2">
+							<ul
+								id="usecases-menu"
+								className={`${
+									!casesMenu
+										? "max-h-0 invisible opacity-0"
+										: "max-h-48 opacity-100"
+								} absolute z-30 top-10 duration-500 grid grid-cols-3 p-2 gap-2 overflow-hidden`}
+							>
 								<li>
 									<h3>Designers</h3>
 									<p>
@@ -91,22 +122,42 @@ const Header = ({ openNav, setOpenNav }) => {
 								</a>
 							</li>
 							<li className="flex items-center">
-								<a href="#" className="text-sm flex items-center gap-1">
+								<a
+									onClick={() => {
+										setResourcesMenu(!resourcesMenu);
+										setCasesMenu(false);
+									}}
+									id="resources"
+									className="text-sm flex items-center gap-1 cursor-pointer"
+								>
 									RESOURCES
 									<TiArrowSortedDown />
 								</a>
 							</li>
-							<ul className="hidden">
-								<li>
+							<ul
+								id="resources-menu"
+								className={`${
+									!resourcesMenu
+										? "max-h-0 invisible opacity-0"
+										: "max-h-80 opacity-100"
+								} absolute z-30 top-10  duration-500  grid grid-cols-3 p-2 gap-2 overflow-hidden`}
+							>
+								<li className="bg-[var(--bg-purple-color)] border rounded-lg  border-[#f2dbfa] col-start-1 col-end-1 row-start-1 row-end-4 flex flex-col">
 									<img
 										src="https://res.cloudinary.com/stark-lab/image/upload/v1711412084/medium_Header_60a6fb72ce.png"
 										alt=""
+										className="rounded-lg object-cover h-1/2"
 									/>
-									<h3>
+									<h3 className="px-2 pt-2 text-[var(--filters-color)]">
 										Introducing Sidekick V2 and Stark Premium to boost your
 										design and development workflow
 									</h3>
-									<a href="Read more on the blog"></a>
+									<a
+										className="link-resources text-[var(--blue)] underline"
+										href="#"
+									>
+										Read more on the blog
+									</a>
 								</li>
 								<li>
 									<h3>Blog</h3>

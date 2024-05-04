@@ -6,10 +6,10 @@ import Footer from './components/Footer/Footer';
 
 function App() {
 
-  const [openNav, setOpenNav] = useState(false) 
+  const [openNav, setOpenNav] = useState(false)
 
   return (
-		<div className="App">
+		<div onClick={(e) => verifyClick(e)} className="App">
 			<Header openNav={openNav} setOpenNav={setOpenNav} />
 			{openNav && <Navbar />}
 			<Main />
